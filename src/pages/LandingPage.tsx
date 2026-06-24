@@ -19,44 +19,48 @@ export function LandingPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background gradient */}
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center justify-center">
+        {/* Background gradient and animated orbs */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-surface" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,200,122,0.15),transparent_50%)]" />
+        <div className="bg-orb w-[600px] h-[600px] bg-accent/20 top-[-200px] left-[-200px] animate-float delay-100" />
+        <div className="bg-orb w-[800px] h-[800px] bg-blue-500/10 bottom-[-300px] right-[-200px] animate-float delay-300" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,214,143,0.08),transparent_70%)]" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-32 sm:pb-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10">
           <div className="text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-8 animate-fade-in-up">
               <Zap className="w-4 h-4" />
               <span>AI-Powered Clinical Triage</span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up delay-100 drop-shadow-2xl">
               <span className="text-white">Triage</span>
-              <span className="text-accent">AI</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-100">AI</span>
             </h1>
 
             {/* Tagline */}
-            <p className="text-xl sm:text-2xl text-gray-300 max-w-2xl mx-auto mb-4">
+            <p className="text-2xl sm:text-3xl text-gray-200 max-w-3xl mx-auto mb-6 animate-fade-in-up delay-200 font-medium">
               Know when to go. Know when to wait. Know why.
             </p>
 
             {/* Description */}
-            <p className="text-gray-400 max-w-xl mx-auto mb-10">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 animate-fade-in-up delay-300 leading-relaxed">
               Get clear urgency verdicts with cited clinical reasoning and nearby
               care options — no panic, no guesswork.
             </p>
 
             {/* CTA */}
-            <Link
-              to="/triage"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-semibold rounded-xl hover:bg-accent-100 transition-all transform hover:scale-105 glow-accent"
-            >
-              <span>Check Your Symptoms</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="animate-fade-in-up delay-400">
+              <Link
+                to="/triage"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-bold text-lg rounded-2xl hover:bg-accent-100 transition-all transform hover:scale-105 hover:-translate-y-1 glow-accent shadow-xl"
+              >
+                <span>Check Your Symptoms</span>
+                <ArrowRight className="w-6 h-6" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -80,65 +84,65 @@ export function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 sm:py-24">
+      <section className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
               How It Works
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Three simple steps to clarity and action
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
-            <div className="relative group">
-              <div className="bg-surface rounded-2xl p-8 border border-surface-light hover:border-accent/30 transition-all h-full">
+            <div className="relative group animate-fade-in-up delay-100">
+              <div className="glass-premium rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,214,143,0.3)] h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <Search className="w-6 h-6 text-accent" />
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <Search className="w-7 h-7 text-accent" />
                   </div>
-                  <span className="text-3xl font-bold text-accent">01</span>
+                  <span className="text-4xl font-black text-white/10 group-hover:text-accent/20 transition-colors">01</span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">Describe</h3>
-                <p className="text-gray-400">
+                <h3 className="text-2xl font-bold text-white mb-4">Describe</h3>
+                <p className="text-gray-400 leading-relaxed text-lg">
                   Tell us your main symptom, how long you've had it, and how severe it
                   feels. Add any associated symptoms.
                 </p>
               </div>
-              <ArrowRight className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 text-accent/30" />
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 text-accent/20 group-hover:text-accent/60 transition-colors duration-500 group-hover:translate-x-2" />
             </div>
 
             {/* Step 2 */}
-            <div className="relative group">
-              <div className="bg-surface rounded-2xl p-8 border border-surface-light hover:border-accent/30 transition-all h-full">
+            <div className="relative group animate-fade-in-up delay-200">
+              <div className="glass-premium rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,214,143,0.3)] h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <Brain className="w-6 h-6 text-accent" />
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <Brain className="w-7 h-7 text-accent" />
                   </div>
-                  <span className="text-3xl font-bold text-accent">02</span>
+                  <span className="text-4xl font-black text-white/10 group-hover:text-accent/20 transition-colors">02</span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">Get Verdict</h3>
-                <p className="text-gray-400">
+                <h3 className="text-2xl font-bold text-white mb-4">Get Verdict</h3>
+                <p className="text-gray-400 leading-relaxed text-lg">
                   Our AI analyzes your input and provides a clear urgency verdict with
                   cited clinical reasoning.
                 </p>
               </div>
-              <ArrowRight className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 text-accent/30" />
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 text-accent/20 group-hover:text-accent/60 transition-colors duration-500 group-hover:translate-x-2" />
             </div>
 
             {/* Step 3 */}
-            <div className="relative group">
-              <div className="bg-surface rounded-2xl p-8 border border-surface-light hover:border-accent/30 transition-all h-full">
+            <div className="relative group animate-fade-in-up delay-300">
+              <div className="glass-premium rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,214,143,0.3)] h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-accent" />
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <MapPin className="w-7 h-7 text-accent" />
                   </div>
-                  <span className="text-3xl font-bold text-accent">03</span>
+                  <span className="text-4xl font-black text-white/10 group-hover:text-accent/20 transition-colors">03</span>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">Find Care</h3>
-                <p className="text-gray-400">
+                <h3 className="text-2xl font-bold text-white mb-4">Find Care</h3>
+                <p className="text-gray-400 leading-relaxed text-lg">
                   Get nearby care options tailored to your urgency level — ER, urgent
                   care, or schedule with your GP.
                 </p>
@@ -149,95 +153,95 @@ export function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-surface py-20 sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-surface-light/30 skew-y-3 transform origin-bottom-left" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight">
               Powerful Features
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Everything you need to make informed health decisions
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Symptom Intake */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                <Activity className="w-6 h-6 text-accent" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-all shadow-[0_0_15px_rgba(0,214,143,0.1)] group-hover:shadow-[0_0_25px_rgba(0,214,143,0.3)]">
+                <Activity className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Symptom Intake
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 leading-relaxed">
                 Guided multi-step form to capture all relevant symptom information
-                accurately.
+                accurately and efficiently.
               </p>
             </div>
 
             {/* Urgency Scoring */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-urgency-yellow/10 flex items-center justify-center mb-4 group-hover:bg-urgency-yellow/20 transition-colors">
-                <Zap className="w-6 h-6 text-urgency-yellow" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-urgency-yellow/10 border border-urgency-yellow/20 flex items-center justify-center mb-6 group-hover:bg-urgency-yellow/20 transition-all shadow-[0_0_15px_rgba(245,158,11,0.1)] group-hover:shadow-[0_0_25px_rgba(245,158,11,0.3)]">
+                <Zap className="w-7 h-7 text-urgency-yellow" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Urgency Scoring
               </h3>
-              <p className="text-gray-400 text-sm">
-                AI-powered analysis to determine the right level of care for your
-                situation.
+              <p className="text-gray-400 leading-relaxed">
+                AI-powered analysis to determine the precise level of care required for your
+                unique situation.
               </p>
             </div>
 
             {/* Cited Reasoning */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
-                <FileText className="w-6 h-6 text-blue-400" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-all shadow-[0_0_15px_rgba(59,130,246,0.1)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.3)]">
+                <FileText className="w-7 h-7 text-blue-400" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Cited Reasoning
               </h3>
-              <p className="text-gray-400 text-sm">
-                Clear explanations backed by PubMed, WHO, and CDC clinical sources.
+              <p className="text-gray-400 leading-relaxed">
+                Clear explanations backed by PubMed, WHO, and CDC clinical sources for total transparency.
               </p>
             </div>
 
             {/* Care Locator */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-urgency-red/10 flex items-center justify-center mb-4 group-hover:bg-urgency-red/20 transition-colors">
-                <MapPin className="w-6 h-6 text-urgency-red" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-urgency-red/10 border border-urgency-red/20 flex items-center justify-center mb-6 group-hover:bg-urgency-red/20 transition-all shadow-[0_0_15px_rgba(244,63,94,0.1)] group-hover:shadow-[0_0_25px_rgba(244,63,94,0.3)]">
+                <MapPin className="w-7 h-7 text-urgency-red" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Care Locator</h3>
-              <p className="text-gray-400 text-sm">
+              <h3 className="text-xl font-bold text-white mb-3">Care Locator</h3>
+              <p className="text-gray-400 leading-relaxed">
                 Find nearby ERs, urgent care centers, and primary care providers
                 instantly.
               </p>
             </div>
 
             {/* Symptom Tracker */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                <Clock className="w-6 h-6 text-accent" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-all shadow-[0_0_15px_rgba(0,214,143,0.1)] group-hover:shadow-[0_0_25px_rgba(0,214,143,0.3)]">
+                <Clock className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Symptom Tracker
               </h3>
-              <p className="text-gray-400 text-sm">
-                Monitor your symptoms over time and update their status as things
-                change.
+              <p className="text-gray-400 leading-relaxed">
+                Monitor your symptoms over time, record changes, and update their status seamlessly.
               </p>
             </div>
 
             {/* Confidence Score */}
-            <div className="bg-primary rounded-2xl p-6 border border-surface-light hover:border-accent/20 transition-all group">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
-                <Shield className="w-6 h-6 text-purple-400" />
+            <div className="glass-premium rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group">
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-all shadow-[0_0_15px_rgba(168,85,247,0.1)] group-hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+                <Shield className="w-7 h-7 text-purple-400" />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-xl font-bold text-white mb-3">
                 Confidence Score
               </h3>
-              <p className="text-gray-400 text-sm">
-                Transparent confidence percentages so you know how certain the AI is
+              <p className="text-gray-400 leading-relaxed">
+                Transparent confidence percentages so you know exactly how certain the AI is
                 about its verdict.
               </p>
             </div>

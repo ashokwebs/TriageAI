@@ -3,14 +3,18 @@ import { Activity, Heart } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-surface border-t border-surface-light mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <footer className="bg-primary border-t border-white/5 mt-auto relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Activity className="w-6 h-6 text-accent" />
-              <span className="text-lg font-bold text-white">TriageAI</span>
+            <div className="flex items-center gap-2 mb-4 group">
+              <div className="relative">
+                <Activity className="w-6 h-6 text-accent group-hover:text-accent-100 transition-colors relative z-10" />
+                <div className="absolute inset-0 bg-accent/20 blur-md rounded-full group-hover:bg-accent/40 transition-colors"></div>
+              </div>
+              <span className="text-lg font-bold text-white tracking-tight">TriageAI</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Know when to go. Know when to wait. Know why. AI-powered symptom triage

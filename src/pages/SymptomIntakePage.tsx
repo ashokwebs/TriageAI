@@ -159,33 +159,37 @@ export function SymptomIntakePage() {
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
+        <div className="mb-10 animate-fade-in-up">
+          <div className="flex items-center justify-between mb-3">
             {stepLabels.map((label, idx) => (
               <div
                 key={label}
-                className={`flex-1 text-center ${
-                  idx + 1 <= step ? 'text-accent' : 'text-gray-500'
+                className={`flex-1 text-center transition-colors duration-500 ${
+                  idx + 1 <= step ? 'text-accent font-semibold drop-shadow-[0_0_8px_rgba(0,214,143,0.5)]' : 'text-gray-500'
                 }`}
               >
-                <div className="text-xs sm:text-sm font-medium">{label}</div>
+                <div className="text-xs sm:text-sm">{label}</div>
               </div>
             ))}
           </div>
-          <div className="h-2 bg-surface rounded-full overflow-hidden">
+          <div className="h-2.5 bg-surface-light rounded-full overflow-hidden shadow-inner">
             <div
-              className="h-full bg-accent transition-all duration-500"
+              className="h-full bg-gradient-to-r from-accent-50 to-accent transition-all duration-700 shadow-[0_0_10px_rgba(0,214,143,0.8)] relative"
               style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
-            />
+            >
+              <div className="absolute inset-0 bg-white/20 w-full h-full animate-[pulse_2s_ease-in-out_infinite]"></div>
+            </div>
           </div>
-          <div className="flex justify-between mt-1 text-xs text-gray-500">
+          <div className="flex justify-between mt-2 text-xs text-gray-400 font-medium">
             <span>Step {step} of {TOTAL_STEPS}</span>
-            <span>{Math.round((step / TOTAL_STEPS) * 100)}% complete</span>
+            <span className="text-accent">{Math.round((step / TOTAL_STEPS) * 100)}% complete</span>
           </div>
         </div>
 
         {/* Form Card */}
-        <div className="bg-surface rounded-2xl p-6 sm:p-8 border border-surface-light">
+        <div className="glass-premium rounded-3xl p-6 sm:p-10 transition-all duration-300 animate-fade-in-up delay-100 relative overflow-hidden">
+          {/* Subtle background glow based on step */}
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
           {/* Step 1: Main Symptom */}
           {step === 1 && (
             <div className="space-y-6">
@@ -195,10 +199,10 @@ export function SymptomIntakePage() {
                 </div>
                 <div>
                   <h2 className="text-xl font-semibold text-white">
-                    What's the main symptom?
+                    Primary Chief Complaint
                   </h2>
                   <p className="text-gray-400 text-sm">
-                    Search or select from common symptoms
+                    Search or select from common clinical presentations
                   </p>
                 </div>
               </div>
@@ -227,21 +231,21 @@ export function SymptomIntakePage() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search symptoms..."
+                  placeholder="Search chief complaints..."
                   className="w-full pl-12 pr-4 py-3 bg-primary border border-surface-light rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
                 />
               </div>
 
               {/* Symptom Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-64 overflow-y-auto pr-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
                 {filteredSymptoms.map((symptom) => (
                   <button
                     key={symptom}
                     onClick={() => handleSymptomSelect(symptom)}
-                    className={`px-4 py-3 rounded-xl text-left text-sm transition-all ${
+                    className={`px-4 py-3 rounded-xl text-left text-sm transition-all duration-300 ${
                       formData.mainSymptom === symptom
-                        ? 'bg-accent text-primary font-medium'
-                        : 'bg-primary border border-surface-light text-gray-300 hover:border-accent hover:text-white'
+                        ? 'bg-accent text-primary font-bold shadow-[0_0_15px_rgba(0,214,143,0.4)] scale-[1.02]'
+                        : 'bg-surface-light/50 border border-white/5 text-gray-300 hover:border-accent/50 hover:bg-surface-light hover:text-white hover:-translate-y-0.5'
                     }`}
                   >
                     {symptom}
@@ -294,7 +298,7 @@ export function SymptomIntakePage() {
               {/* Duration */}
               <div>
                 <label className="block text-white font-medium mb-3">
-                  How long has this been going on?
+                  Symptom Duration (Onset)
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {durations.map((d) => (
@@ -318,7 +322,7 @@ export function SymptomIntakePage() {
               {/* Severity */}
               <div>
                 <label className="block text-white font-medium mb-3">
-                  How severe is it? (1 = mild, 10 = severe)
+                  Clinical Severity Scale (1-10)
                 </label>
                 <div className="flex items-center gap-4">
                   <input
@@ -346,11 +350,17 @@ export function SymptomIntakePage() {
                     {formData.severity}
                   </div>
                 </div>
-                <div className="flex justify-between mt-2 text-xs text-gray-500">
-                  <span>Mild</span>
-                  <span>Moderate</span>
-                  <span>Severe</span>
+                <div className="flex justify-between mt-2 text-xs text-gray-500 mb-4">
+                  <span>Mild (1-4)</span>
+                  <span>Moderate (5-7)</span>
+                  <span>Severe (8-10)</span>
                 </div>
+                {formData.severity >= 8 && (
+                  <div className="mt-2 flex items-start gap-2 p-3 bg-urgency-red/10 border border-urgency-red/20 rounded-lg animate-fade-in-up">
+                    <AlertCircle className="w-4 h-4 text-urgency-red mt-0.5" />
+                    <span className="text-sm text-urgency-red">Severe pain or symptoms often require immediate medical evaluation. Please consider proceeding directly to an emergency department.</span>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -435,7 +445,7 @@ export function SymptomIntakePage() {
               {/* Age Range */}
               <div>
                 <label className="block text-white font-medium mb-3">
-                  Age range
+                  Patient Age Demographic
                 </label>
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                   {ageRanges.map((range) => (
@@ -463,9 +473,9 @@ export function SymptomIntakePage() {
               {/* Medical Conditions */}
               <div>
                 <label className="block text-white font-medium mb-3">
-                  Any existing medical conditions?
+                  Pre-existing Clinical Conditions (Comorbidities)
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto pr-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
                   {commonConditions.map((condition) => (
                     <button
                       key={condition}

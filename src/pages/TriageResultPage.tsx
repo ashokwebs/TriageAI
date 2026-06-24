@@ -153,28 +153,32 @@ export function TriageResultPage() {
 
         {/* Main Verdict Card */}
         <div
-          className={`rounded-2xl p-6 sm:p-8 mb-8 ${getUrgencyColor(
+          className={`rounded-3xl p-8 sm:p-10 mb-10 border transition-all duration-700 animate-fade-in-up ${getUrgencyColor(
             entry.urgency_verdict
-          )} ${getGlowClass(entry.urgency_verdict)}`}
+          )} ${getGlowClass(entry.urgency_verdict)} border-white/10 shadow-2xl relative overflow-hidden`}
         >
-          <div className="flex flex-col sm:flex-row items-center gap-6">
+          {/* Background effects */}
+          <div className="absolute top-0 left-0 w-full h-full bg-white/5 backdrop-blur-sm z-0"></div>
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl z-0 animate-pulse-slow"></div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-8 relative z-10">
             <div className="flex-shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white/20 flex items-center justify-center">
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white/20 flex items-center justify-center backdrop-blur-md shadow-xl border border-white/20 animate-[float_4s_ease-in-out_infinite]">
                 {entry.urgency_verdict === 'GO_NOW' ? (
-                  <AlertTriangle className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
+                  <AlertTriangle className="w-14 h-14 sm:w-16 sm:h-16 text-white drop-shadow-md" />
                 ) : entry.urgency_verdict === 'SEE_THIS_WEEK' ? (
-                  <Clock className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
+                  <Clock className="w-14 h-14 sm:w-16 sm:h-16 text-white drop-shadow-md" />
                 ) : (
-                  <Shield className="w-12 h-12 sm:w-14 sm:h-14 text-white" />
+                  <Shield className="w-14 h-14 sm:w-16 sm:h-16 text-white drop-shadow-md" />
                 )}
               </div>
             </div>
 
             <div className="text-center sm:text-left flex-1">
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight drop-shadow-md">
                 {getUrgencyLabel(entry.urgency_verdict)}
               </h1>
-              <p className="text-white/80 text-lg mb-4">
+              <p className="text-white/90 text-xl mb-6 font-medium">
                 {entry.urgency_verdict === 'GO_NOW'
                   ? 'Seek emergency care immediately'
                   : entry.urgency_verdict === 'SEE_THIS_WEEK'
@@ -183,10 +187,10 @@ export function TriageResultPage() {
               </p>
 
               {/* Confidence Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white text-sm">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/20 text-white text-sm font-medium backdrop-blur-md border border-white/10 shadow-lg">
                 <Activity className="w-4 h-4" />
                 <span>
-                  <span className="font-semibold">
+                  <span className="font-bold text-base">
                     {entry.confidence_percentage}%
                   </span>{' '}
                   confidence
@@ -197,11 +201,12 @@ export function TriageResultPage() {
 
           {/* Quick Actions */}
           {entry.urgency_verdict === 'GO_NOW' && (
-            <div className="mt-6 p-4 rounded-xl bg-white/10 border border-white/20">
-              <p className="text-white font-medium mb-2">
+            <div className="mt-8 p-5 rounded-2xl bg-black/20 border border-white/20 backdrop-blur-md relative z-10">
+              <p className="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5" />
                 If this is a life-threatening emergency, call 911 immediately.
               </p>
-              <p className="text-white/80 text-sm">
+              <p className="text-white/80 text-base">
                 Do not drive yourself to the hospital if you're experiencing severe
                 symptoms.
               </p>
@@ -210,33 +215,38 @@ export function TriageResultPage() {
         </div>
 
         {/* Symptom Summary Card */}
-        <div className="bg-surface rounded-2xl p-6 mb-8 border border-surface-light">
-          <h2 className="text-lg font-semibold text-white mb-4">
+        <div className="glass-premium rounded-3xl p-8 mb-8 animate-fade-in-up delay-100">
+          <h2 className="text-xl font-bold text-white mb-6">
             Your Symptom Summary
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="p-4 bg-primary rounded-xl">
-              <p className="text-gray-400 text-sm mb-1">Main Symptom</p>
-              <p className="text-white font-medium">{entry.main_symptom}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="p-5 bg-surface/50 rounded-2xl border border-white/5">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Main Symptom</p>
+              <p className="text-white font-semibold text-lg">{entry.main_symptom}</p>
             </div>
-            <div className="p-4 bg-primary rounded-xl">
-              <p className="text-gray-400 text-sm mb-1">Duration</p>
-              <p className="text-white font-medium">{entry.duration}</p>
+            <div className="p-5 bg-surface/50 rounded-2xl border border-white/5">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Duration</p>
+              <p className="text-white font-semibold text-lg">{entry.duration}</p>
             </div>
-            <div className="p-4 bg-primary rounded-xl">
-              <p className="text-gray-400 text-sm mb-1">Severity</p>
-              <p className="text-white font-medium">{entry.severity}/10</p>
+            <div className="p-5 bg-surface/50 rounded-2xl border border-white/5">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Severity</p>
+              <div className="flex items-center gap-2">
+                <p className="text-white font-semibold text-lg">{entry.severity}/10</p>
+                <div className="flex-1 h-1.5 bg-surface-lighter rounded-full overflow-hidden">
+                  <div className="h-full bg-accent" style={{ width: `${(entry.severity / 10) * 100}%` }}></div>
+                </div>
+              </div>
             </div>
           </div>
 
           {entry.associated_symptoms.length > 0 && (
-            <div className="mt-4 pt-4 border-t border-surface-light">
-              <p className="text-gray-400 text-sm mb-2">Associated Symptoms</p>
+            <div className="mt-6 pt-6 border-t border-white/5">
+              <p className="text-gray-400 text-sm mb-3 font-medium">Associated Symptoms</p>
               <div className="flex flex-wrap gap-2">
                 {entry.associated_symptoms.map((symptom) => (
                   <span
                     key={symptom}
-                    className="px-3 py-1 bg-primary rounded-full text-gray-300 text-sm"
+                    className="px-4 py-1.5 bg-surface/50 rounded-full text-gray-300 text-sm border border-white/5"
                   >
                     {symptom}
                   </span>
@@ -247,7 +257,7 @@ export function TriageResultPage() {
         </div>
 
         {/* AI Reasoning */}
-        <div className="bg-surface rounded-2xl p-6 mb-8 border border-surface-light">
+        <div className="glass-premium rounded-3xl p-8 mb-8 animate-fade-in-up delay-200">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
               <Activity className="w-5 h-5 text-accent" />
@@ -260,7 +270,7 @@ export function TriageResultPage() {
         </div>
 
         {/* Citations */}
-        <div className="bg-surface rounded-2xl p-6 mb-8 border border-surface-light">
+        <div className="glass-premium rounded-3xl p-8 mb-8 animate-fade-in-up delay-300">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
               <Bookmark className="w-5 h-5 text-blue-400" />
@@ -292,21 +302,21 @@ export function TriageResultPage() {
         </div>
 
         {/* Nearby Care Options */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-urgency-red/10 flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-urgency-red" />
+        <div className="mb-10 animate-fade-in-up delay-400">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-xl bg-urgency-red/10 flex items-center justify-center">
+              <MapPin className="w-6 h-6 text-urgency-red" />
             </div>
-            <h2 className="text-lg font-semibold text-white">
+            <h2 className="text-xl font-bold text-white">
               Nearby Care Options
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {entry.care_options.map((option, idx) => (
               <div
                 key={idx}
-                className={`bg-surface rounded-xl p-5 border ${getCareTypeColor(
+                className={`glass-premium rounded-2xl p-6 transition-all hover:-translate-y-1 ${getCareTypeColor(
                   option.type
                 )}`}
               >

@@ -108,18 +108,18 @@ export function SymptomTrackerPage() {
     <div className="min-h-screen py-8 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10 animate-fade-in-up">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 tracking-tight">
               Symptom Tracker
             </h1>
-            <p className="text-gray-400">
+            <p className="text-gray-400 text-lg">
               Monitor your symptoms over time and track changes
             </p>
           </div>
           <Link
             to="/triage"
-            className="flex items-center gap-2 px-5 py-3 bg-accent text-primary font-semibold rounded-xl hover:bg-accent-100 transition-all"
+            className="flex items-center gap-2 px-6 py-3 bg-accent text-primary font-bold rounded-xl hover:bg-accent-100 transition-all transform hover:scale-105 glow-accent shadow-lg"
           >
             <Plus className="w-5 h-5" />
             <span>New Check</span>
@@ -133,44 +133,45 @@ export function SymptomTrackerPage() {
         )}
 
         {entries.length === 0 ? (
-          <div className="bg-surface rounded-2xl p-12 border border-surface-light text-center">
-            <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-8 h-8 text-accent" />
+          <div className="glass-premium rounded-3xl p-16 text-center animate-fade-in-up delay-100">
+            <div className="w-20 h-20 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6 shadow-[0_0_15px_rgba(0,214,143,0.1)]">
+              <FileText className="w-10 h-10 text-accent" />
             </div>
-            <h2 className="text-xl font-semibold text-white mb-2">
+            <h2 className="text-2xl font-bold text-white mb-3">
               No symptoms tracked yet
             </h2>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              Start by checking your symptoms. We'll keep a record so you can
+            <p className="text-gray-400 mb-8 max-w-md mx-auto text-lg leading-relaxed">
+              Start by checking your symptoms. We'll keep a securely encrypted record so you can
               monitor changes over time.
             </p>
             <Link
               to="/triage"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-primary font-semibold rounded-xl hover:bg-accent-100 transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-bold rounded-xl hover:bg-accent-100 transition-all transform hover:-translate-y-1 glow-accent shadow-xl"
             >
               <span>Check Your Symptoms</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {entries.map((entry, idx) => (
               <div
                 key={entry.id}
-                className="bg-surface rounded-xl border border-surface-light overflow-hidden hover:border-surface-lighter transition-colors"
+                className="glass-premium rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in-up"
+                style={{ animationDelay: `${(idx % 5) * 100}ms` }}
               >
                 {/* Timeline connector */}
                 <div className="relative">
                   {idx < entries.length - 1 && (
-                    <div className="absolute left-8 top-16 bottom-0 w-0.5 bg-surface-light" />
+                    <div className="absolute left-8 top-16 bottom-[-24px] w-0.5 bg-gradient-to-b from-surface-light to-transparent" />
                   )}
                 </div>
 
-                <div className="p-5">
-                  <div className="flex items-start gap-4">
+                <div className="p-6">
+                  <div className="flex items-start gap-5">
                     {/* Date Badge */}
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 rounded-xl bg-primary flex flex-col items-center justify-center">
+                    <div className="flex-shrink-0 relative z-10">
+                      <div className="w-16 h-16 rounded-2xl bg-surface/80 border border-white/5 flex flex-col items-center justify-center shadow-lg">
                         <span className="text-2xl font-bold text-white">
                           {new Date(entry.created_at).getDate()}
                         </span>
@@ -280,26 +281,26 @@ export function SymptomTrackerPage() {
 
         {/* Stats Summary */}
         {entries.length > 0 && (
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="bg-surface rounded-xl p-4 border border-surface-light">
-              <p className="text-gray-400 text-sm mb-1">Total Checks</p>
-              <p className="text-2xl font-bold text-white">{entries.length}</p>
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 animate-fade-in-up delay-500">
+            <div className="glass-premium rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Total Checks</p>
+              <p className="text-3xl font-bold text-white">{entries.length}</p>
             </div>
-            <div className="bg-surface rounded-xl p-4 border border-surface-light">
-              <p className="text-gray-400 text-sm mb-1">Resolved</p>
-              <p className="text-2xl font-bold text-urgency-green">
+            <div className="glass-premium rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Resolved</p>
+              <p className="text-3xl font-bold text-urgency-green drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]">
                 {entries.filter((e) => e.status === 'RESOLVED').length}
               </p>
             </div>
-            <div className="bg-surface rounded-xl p-4 border border-surface-light">
-              <p className="text-gray-400 text-sm mb-1">Active</p>
-              <p className="text-2xl font-bold text-urgency-yellow">
+            <div className="glass-premium rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+              <p className="text-gray-400 text-sm mb-2 font-medium">Active</p>
+              <p className="text-3xl font-bold text-urgency-yellow drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">
                 {entries.filter((e) => e.status === 'ACTIVE').length}
               </p>
             </div>
-            <div className="bg-surface rounded-xl p-4 border border-surface-light">
-              <p className="text-gray-400 text-sm mb-1">First Check</p>
-              <p className="text-lg font-bold text-white">
+            <div className="glass-premium rounded-2xl p-5 hover:-translate-y-1 transition-transform">
+              <p className="text-gray-400 text-sm mb-2 font-medium">First Check</p>
+              <p className="text-xl font-bold text-white">
                 {entries.length > 0
                   ? formatDate(entries[entries.length - 1].created_at)
                   : '-'}
