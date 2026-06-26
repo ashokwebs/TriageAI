@@ -8,7 +8,7 @@ import { AboutPage } from './pages/AboutPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/TriageAI">
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
