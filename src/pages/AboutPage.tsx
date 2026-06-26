@@ -339,20 +339,28 @@ export function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Ready to Check Your Symptoms?
-          </h2>
-          <p className="text-gray-400 mb-6">
-            Get a clear urgency verdict in under 2 minutes.
-          </p>
-          <Link
-            to="/triage"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-semibold rounded-xl hover:bg-accent-100 transition-all transform hover:scale-105 glow-accent"
-          >
-            <span>Start Symptom Check</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+        <div className="mt-20 mb-10 relative">
+          {/* Ambient Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/15 rounded-full blur-[100px] pointer-events-none z-0"></div>
+          
+          <div className="glass-premium rounded-[2.5rem] p-10 sm:p-16 text-center border border-white/10 shadow-2xl relative z-10 overflow-hidden group">
+             {/* Inner top highlight */}
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-5 tracking-tight drop-shadow-md">
+              Ready to Check Your Symptoms?
+            </h2>
+            <p className="text-gray-300 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+              Get a clear, AI-powered urgency verdict in under 2 minutes.
+            </p>
+            <Link
+              to="/triage"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold text-lg rounded-xl hover:bg-gray-100 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+            >
+              <span>Start Symptom Check</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

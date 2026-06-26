@@ -347,21 +347,29 @@ export function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-accent/20 to-accent/5 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to Check Your Symptoms?
-          </h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-xl mx-auto">
-            Get a clear urgency verdict in under 2 minutes.
-          </p>
-          <Link
-            to="/triage"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-primary font-semibold rounded-xl hover:bg-accent-100 transition-all transform hover:scale-105 glow-accent"
-          >
-            <span>Start Symptom Check</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      <section className="py-24 relative overflow-hidden">
+        {/* Ambient Background Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-accent/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="glass-premium rounded-[3rem] p-12 sm:p-20 text-center border border-white/10 shadow-2xl relative overflow-hidden group">
+            {/* Inner top highlight */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
+              Ready to Check Your Symptoms?
+            </h2>
+            <p className="text-gray-300 text-xl mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+              Get a clear, AI-powered urgency verdict in under 2 minutes. Stop guessing and start knowing.
+            </p>
+            <Link
+              to="/triage"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-white text-primary font-bold text-lg rounded-2xl hover:bg-gray-100 transition-all transform hover:scale-105 hover:-translate-y-1 shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
+            >
+              <span>Start Symptom Check</span>
+              <ArrowRight className="w-6 h-6" />
+            </Link>
+          </div>
         </div>
       </section>
 
